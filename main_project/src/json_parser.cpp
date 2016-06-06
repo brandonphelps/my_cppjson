@@ -117,6 +117,9 @@ bool JsonParser::accept(int symbol_id)
 {
   if(is_string(m_current_symbol) && symbol_id == TokenId::string_symbol_id)
   {
+    // Remove the quotes from the symbol
+    m_current_symbol.erase(0, 1);
+    m_current_symbol.erase(m_current_symbol.size()-1, m_current_symbol.size());
     get_next_symbol();
     return true;
   }
