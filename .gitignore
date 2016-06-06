@@ -1,0 +1,10 @@
+
+
+# CMake 
+
+Makefile
+
+cmake_install.cmake
+
+main_project/src/CMakeCache.txt
+main_project/src/CMakeFiles/
