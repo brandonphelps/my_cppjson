@@ -1,14 +1,16 @@
 
+#include "token_id.h"
 #include "json_parser.h"
+
 #include <stdio.h>
 #include <iostream>
 
 JsonParser::JsonParser()
 {
-  m_symbol_vector.push_back(l_lbrace);
-  m_symbol_vector.push_back(l_rbrace);
-  m_symbol_vector.push_back(l_colon);
-  m_symbol_vector.push_back(l_comma);
+  m_symbol_vector.push_back(TokenId::lbrace);
+  m_symbol_vector.push_back(TokenId::rbrace);
+  m_symbol_vector.push_back(TokenId::colon);
+  m_symbol_vector.push_back(TokenId::comma);
 }
 
 std::map<std::string, std::string> JsonParser::parse(const std::string& filename)
@@ -113,7 +115,7 @@ bool JsonParser::accept(const std::string& symbol)
 
 bool JsonParser::accept(int symbol_id)
 {
-  if(is_string(m_current_symbol) && symbol_id == string_symbol_id)
+  if(is_string(m_current_symbol) && symbol_id == TokenId::string_symbol_id)
   {
     get_next_symbol();
     return true;
@@ -123,17 +125,17 @@ bool JsonParser::accept(int symbol_id)
 
 bool JsonParser::lbrace_symbol()
 {
-  return accept(l_lbrace);
+  return accept(TokenId::lbrace);
 }
 
 bool JsonParser::rbrace_symbol()
 {
-  return accept(l_rbrace);
+  return accept(TokenId::rbrace);
 }
 
 bool JsonParser::string_symbol()
 {
-  return accept(string_symbol_id);
+  return accept(TokenId::string_symbol_id);
 }
 
 bool JsonParser::key_symbol()
@@ -145,7 +147,7 @@ bool JsonParser::key_symbol()
 
 bool JsonParser::colon_symbol()
 {
-  return accept(l_colon);
+  return accept(TokenId::colon);
 }
 
 bool JsonParser::value_symbol()
@@ -175,7 +177,7 @@ bool JsonParser::dict_entry_list_symbol()
 {
   if(dict_entry_symbol())
   {
-    if(accept(l_comma))
+    if(accept(TokenId::comma))
     {
       return dict_entry_list_symbol();
     }

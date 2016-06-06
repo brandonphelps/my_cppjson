@@ -41,12 +41,6 @@ private:
   bool start_symbol();
 
 private:
-  const std::string l_lbrace = "{";
-  const std::string l_rbrace = "}";
-  const std::string l_colon  = ":";
-  const std::string l_comma  = ",";
-
-  const int string_symbol_id = 0;
 
   std::string m_current_symbol;
   std::string m_prev_symbol;
