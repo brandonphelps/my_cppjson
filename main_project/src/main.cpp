@@ -4,6 +4,8 @@
 #include <fstream>
 #include <vector>
 
+#include "json_parser.h"
+
 std::ifstream infile;
 
 char current_char;
@@ -274,7 +276,18 @@ int main(int argc, char* argv[])
   }
   else
   {
-    infile.open(argv[1]);
+    JsonParser p;
+    
+    std::map<std::string, std::string> configFile = p.parse(argv[1]);
+
+    std::cout << "file contents" << std::endl;
+    for(std::map<std::string, std::string>::iterator it = configFile.begin(); it != configFile.end(); ++it)
+    {
+      std::cout << it->first << " : " << it->second << std::endl;
+    }
+
+    //infile.open(argv[1]);
+    /*
     if(infile.is_open())
     {
       if(start_token())
@@ -286,7 +299,7 @@ int main(int argc, char* argv[])
         std::cout << "--- Failed" << std::endl;
       }
     }
+    */
   }
-
   return 0;
 }
