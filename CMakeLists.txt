@@ -7,4 +7,4 @@ set(TARGET main)
 
 subdirs(main_project)
 
-export(TARGETS main FILE ${CMAKE_BINARY_DIR}/cppjsonConfig.cmake)
+
