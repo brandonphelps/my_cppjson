@@ -44,6 +44,7 @@ std::map<std::string, std::string> JsonParser::parse(const std::string& filename
 int JsonParser::get_char()
 {
   int code = m_instream.get();
+
   m_current_char = char(code);
   if(code == -1)
   {
