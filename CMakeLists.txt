@@ -6,5 +6,3 @@ project(CppJson)
 set(TARGET main)
 
 subdirs(main_project)
-
-
